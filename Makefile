@@ -3,11 +3,12 @@ PREFIX?=/usr/local
 TARGET=mylibrary
 
 SRC_DIR = src
+INCLUDE_DIR = include
 BUILD_DIR = build
 TEST_DIR = tests
 LIBRARY = $(BUILD_DIR)/lib$(TARGET).a
 CC = gcc
-CFLAGS = -Wall -g -O2
+CFLAGS = -Wall -g -O2 -I$(INCLUDE_DIR)
 AR = ar
 ARFLAGS = rcs
 RM = rm -rf
@@ -15,7 +16,7 @@ RM = rm -rf
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 TEST_SRC = $(wildcard $(TEST_DIR)/*.c)
-TEST_EXE = $(addprefix $(BUILD_DIR)/, $(basename $(TEST_SRC:.c=.out)))
+TEST_EXE = $(addprefix $(BUILD_DIR)/$(TEST_DIR)/, $(basename $(notdir $(TEST_SRC:.c=.out))))
 
 # Default target: Compile all source files and create static library
 default: $(LIBRARY)
@@ -35,7 +36,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
 install:
 	cp $(LIBRARY) $(PREFIX)/lib
 	mkdir -p $(PREFIX)/include/$(TARGET)
-	cp $(SRC_DIR)/*.h $(PREFIX)/include/$(TARGET)
+	cp $(INCLUDE_DIR)/*.h $(PREFIX)/include/$(TARGET)
 
 # Phony target to always rebuild and run the tests
 .PHONY: test
@@ -44,7 +45,7 @@ install:
 clean_tests:
 	rm -f $(TEST_EXE)
 	
-test: clean_tests $(LIBRARY) $(TEST_DIR) $(TEST_EXE)
+test: clean_tests $(LIBRARY) $(TEST_EXE)
 
 $(BUILD_DIR)/$(TEST_DIR): 
 	mkdir -p $(BUILD_DIR)/$(TEST_DIR)

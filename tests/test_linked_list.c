@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../src/linked_list.h"
+#include <linked_list.h>
 #include "testlib.h"
 // Helper function to check list size
 int list_size(LinkedList *list) {

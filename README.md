@@ -2,4 +2,4 @@
 
 run `make && make install` to compile and install a custom lib.
 
-For more information please RTFSC `Makefile`.
+For more information please RTFSC from `Makefile`.

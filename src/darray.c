@@ -1,11 +1,11 @@
-#include "darray.h"
+#include <darray.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
 
 Darray *array_new(size_t unit_size) {
     Darray *array = (Darray*) calloc(1, sizeof(Darray));
-    array->array = malloc(unit_size);
+    array->array = calloc(1, unit_size);
     array->len = 0;
     array->unit_size = unit_size;
     array->malloced = 1;

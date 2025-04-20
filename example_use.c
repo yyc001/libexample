@@ -1,6 +1,6 @@
 // gcc use.c -lmylibrary
 
-#include<mylibrary/darray.h>
+#include <darray.h>
 
 int main(){
     int carray[] = {1, 2, 3};

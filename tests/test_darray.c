@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../src/darray.h"
+#include <darray.h>
 #include "testlib.h"
 
 

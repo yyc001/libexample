@@ -12,7 +12,7 @@ typedef struct list {
 
 extern LinkedListNode *__linked_list_ref__;
 
-LinkedList *list_new();
+LinkedList *list_new(void);
 void list_delete(LinkedList *list);
 void list_delete_keepvalue(LinkedList *list);
 // void list_remove_node(LinkedList *list, LinkedListNode *node);

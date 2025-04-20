@@ -19,7 +19,7 @@ void *array_at(Darray* array, size_t index);
 
 
 #define ARRAY_FOREACH(type, array, v) \
-    for (arr_size_t i = 0; i < array->len; i++) \
+    for (size_t i = 0; i < array->len; i++) \
         if ((v = *((type*)array_at(array, i))), 1)
 
 #endif
